@@ -22,3 +22,6 @@ class EmbeddingService:
         )
 
         return response.data[0].embedding
+
+    async def close(self) -> None:
+        await self.client.close()
