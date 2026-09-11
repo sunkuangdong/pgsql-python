@@ -1,10 +1,17 @@
 from functools import lru_cache
 
+from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
     database_url: str
+
+    openai_api_key: SecretStr | None = None
+    openai_base_url: str = "https://api.openai.com/v1"
+
+    embedding_model: str = "text-embedding-3-small"
+    embedding_dimensions: int = 1024
 
     model_config = SettingsConfigDict(
         env_file=".env",
