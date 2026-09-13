@@ -7,7 +7,7 @@ class EmbeddingService:
     def __init__(self):
         if settings.openai_api_key is None:
             raise RuntimeError("没有配置 OPENAI_API_KEY")
-
+        # 1. 创建异步OpenAI客户端
         self.client = AsyncOpenAI(
             api_key=settings.openai_api_key.get_secret_value(),
             base_url=settings.openai_base_url,
